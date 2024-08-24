@@ -1,4 +1,5 @@
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, RouteProp} from '@react-navigation/native';
+import React from 'react';
 import HomePage from '../screens/Homepage';
 import {NAV_HEADER_OPTION} from '../utils/constants';
 
@@ -8,6 +9,7 @@ import {StyleSheet} from 'react-native';
 import BottomBarIcon from '../components/Icons/BottomBarIcon';
 import AllCharacters from '../screens/Characters/AllCharacters';
 import CharacterInfoPage from '../screens/Characters/CharacterInfo/CharacterInfoPage';
+import { ICharacterType } from '../utils/types';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,19 +53,20 @@ const TabNavigation: React.FC = () => {
       />
     </Tab.Navigator>
   );
-};
+};interface CharacterInfoPageProps {
+  route: RouteProp<{params: {character: ICharacterType}}, 'params'>;
+}
 
 export const AppNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        //@ts-ignore
         screenOptions={NAV_HEADER_OPTION}
         initialRouteName="TabNavigator">
         <Stack.Screen name={'TabNavigator'} component={TabNavigation} />
         <Stack.Screen
           name={'CharacterInfoPage'}
-          component={CharacterInfoPage}
+          component={CharacterInfoPage as React.FC<Partial<CharacterInfoPageProps>>}
         />
       </Stack.Navigator>
     </NavigationContainer>

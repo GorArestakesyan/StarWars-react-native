@@ -1,6 +1,4 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-//@ts-ignore
 import {default as IonIcon} from 'react-native-vector-icons/dist/Ionicons';
 interface BottomBarIconProps {
   focused: boolean;
@@ -21,5 +19,3 @@ const BottomBarIcon: React.FC<BottomBarIconProps> = ({
 };
 
 export default React.memo(BottomBarIcon);
-
-const styles = StyleSheet.create({});

@@ -4,7 +4,6 @@ import {
   default as DirectorIcon,
   default as PersonsIcon,
   default as RecIcon,
-  //@ts-ignore
 } from '../../../node_modules/react-native-vector-icons/dist/Ionicons';
 import EachCharacter from '../../screens/Characters';
 import {ICharacterType, IFilm} from '../../utils/types';

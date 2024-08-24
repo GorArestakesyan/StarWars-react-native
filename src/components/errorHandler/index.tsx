@@ -1,5 +1,5 @@
+import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-//@ts-ignore
 import SadEmoji from '../../../node_modules/react-native-vector-icons/dist/Entypo';
 interface ErrorHandlerProps {
   errorMessage: string;

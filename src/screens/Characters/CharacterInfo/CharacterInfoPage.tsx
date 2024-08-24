@@ -1,4 +1,8 @@
-import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {
+  ParamListBase,
+  RouteProp,
+  useNavigation,
+} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
@@ -9,12 +13,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Movie from '../../../components/Movie';
-//@ts-ignore
 import {default as BackIcon} from 'react-native-vector-icons/dist/Ionicons';
+import Movie from '../../../components/Movie';
+import {ICharacterType, IFilm} from '../../../utils/types';
 
-const CharacterInfoPage = ({route}: {route: any}) => {
-  const {character} = route.params;
+interface CharacterInfoPageProps {
+  route: RouteProp<{params: {character: ICharacterType}}, 'params'>;
+}
+
+const CharacterInfoPage: React.FC<CharacterInfoPageProps> = ({ route }) => {
+  const { params } = route;
+  const character = params.character;
 
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
@@ -25,14 +34,17 @@ const CharacterInfoPage = ({route}: {route: any}) => {
       source={require('../../../assets/images/star-wars-wallpaper.jpg')}
       style={{flex: 1}}>
       <View>
-        <TouchableOpacity activeOpacity={0.6} style={styles.backBtn} onPress={goBack}>
+        <TouchableOpacity
+          activeOpacity={0.6}
+          style={styles.backBtn}
+          onPress={goBack}>
           <BackIcon name="arrow-back-sharp" size={18} color="#FF5349" />
           <Text style={styles.backBtnText}>Go Back</Text>
         </TouchableOpacity>
       </View>
       <Text style={styles.characterName}>{character.name}</Text>
       <Text style={styles.characterBirthyear}>
-        {character.birthYear !== 'unknown'
+        {character.birthYear !== undefined
           ? character.birthYear
           : 'Birth year not marked'}
       </Text>
@@ -41,8 +53,8 @@ const CharacterInfoPage = ({route}: {route: any}) => {
         <Text style={styles.subCharacterName}>{character.name}</Text> appears..
       </Text>
       <FlatList
-        data={character.filmConnection?.films}
-        renderItem={({item}: {item: any}) => (
+        data={character.filmConnection.films}
+        renderItem={({item}: {item: IFilm}) => (
           <Movie item={item} showCharacters={false} />
         )}
       />

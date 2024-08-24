@@ -1,3 +1,4 @@
+import React from 'react';
 import {FlatList, ImageBackground, StyleSheet, Text} from 'react-native';
 
 import {useQuery} from '@apollo/client';

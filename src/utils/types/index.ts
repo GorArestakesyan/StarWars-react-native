@@ -1,7 +1,18 @@
+type TSingleFilm = {
+    title: string;
+    created: string;
+    director: unknown;
+    producers: unknown;
+    releaseDate: Date;
+}
 interface ICharacterType {
   name: string;
   birthYear: string;
   __typename?: string;
+  filmConnection: {
+    films: TSingleFilm[];
+    total: number;
+  };
 }
 
 interface IFilm {
@@ -14,6 +25,7 @@ interface IFilm {
     characters: ICharacterType[];
   };
   producers: string[];
+  releaseDate?: Date
 }
 
-export type {IFilm, ICharacterType};
+export type {ICharacterType, IFilm, TSingleFilm};
